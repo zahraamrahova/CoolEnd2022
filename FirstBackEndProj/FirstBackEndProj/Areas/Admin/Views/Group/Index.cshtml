@@ -1,0 +1,82 @@
+﻿@model List<FirstBackEndProj.Models.AuthGroup>
+@{
+    ViewBag.Title = "Groups";
+}
+
+<div class="col-md-12">
+    <h3 class="title-5 m-b-35">Groups</h3>
+    <div class="table-data__tool">
+        <div class="table-data__tool-right">
+            <a href="@Url.Action("Create", "Group")" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="zmdi zmdi-plus"></i>Add Group
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+        <table class="table table-data2">
+            <thead>
+                <tr>
+                    <th>Group Name</th>
+                    <th>User Email</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var g in Model)
+                {
+                    <tr class="tr-shadow">
+                        <td>@g.Name</td>
+                        <td>@String.Join(",", g.Users.Select(u => u.Email).ToArray())</td>
+
+                        <td>
+                            <div class="table-data-feature">
+                                <a href="@Url.Action("Edit", "Group", new {Id=g.Id })" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                                @if (g.Users.Count == 0)
+                                {
+                                    <a href="@Url.Action("Delete", "Group", new {Id=g.Id })" class="item delete-group" data-toggle="tooltip" data-placement="top" data-groupid=" @g.Id" title="Delete">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="spacer"></tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- END DATA TABLE -->
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('a.delete-group').confirm({
+            title: "Delete Group",
+            content: "Are you sure to delete group?",
+            buttons: {
+                heyThere: {
+                    text: 'Yes',
+                    btnClass: 'btn-danger',
+                    action: function (heyThereButton) {
+                        var groupId = $(this).data("groupid");
+                        console.log(groupId);
+                        location.href = this.$target.attr('href')
+
+                    }
+                },
+                no: {
+                    text: 'No',
+                    btnClass: 'btn-success',
+                    action: function (no) {
+                    }
+                },
+            }
+        });
+    });
+
+</script>
+

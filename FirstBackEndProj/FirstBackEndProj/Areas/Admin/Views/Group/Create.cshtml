@@ -1,0 +1,58 @@
+﻿
+@model List<FirstBackEndProj.Models.AuthAction>
+@{
+    ViewBag.Title = "Add Group";
+}
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            Add Group
+        </div>
+        <div class="card-body card-block">
+            <form action="@Url.Action("Create", "Group")" method="post" class="form-horizontal" id="group-form">
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="name" class=" form-control-label">Group Name</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="Name" required name="Name" class="form-control">
+                    </div>
+                </div>
+                <br> <br>
+                @foreach (var action in Model)
+                {
+
+                    <div class="row form-group action-permission" data-action="@action.Id">
+                        <div class="col col-md-3">
+                            <label class=" form-control-label">@action.Name</label>
+                        </div>
+                        <div class="col col-md-9">
+                            <div class="form-check-inline form-check">
+                                <label for="CanView-@action.Name" class="form-check-label ">
+                                    <input type="checkbox" id="CanView-@action.Name" name="CanView" class="form-check-input"> View
+                                </label>
+                                <label for="CanEdit-@action.Name" class="form-check-label ">
+                                    <input type="checkbox" id="CanEdit-@action.Name" name="CanEdit" class="form-check-input"> Edit
+                                </label>
+                                <label for="CanDelete-@action.Name" class="form-check-label ">
+                                    <input type="checkbox" id="CanDelete-@action.Name" name="CanDelete" class="form-check-input"> Delete
+                                </label>
+                                <label for="OnlyOwner-@action.Name" class="form-check-label ">
+                                    <input type="checkbox" id="OnlyOwner-@action.Name" name="OnlyOwner" class="form-check-input"> Owner
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" btn-sm>
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

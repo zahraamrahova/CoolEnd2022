@@ -1,0 +1,94 @@
+﻿
+@model List<FirstBackEndProj.Models.User>
+@{
+    ViewBag.Title = "Users";
+}
+
+<div class="col-md-12">
+    <h3 class="title-5 m-b-35">Users</h3>
+    <div class="table-data__tool">
+        <div class="table-data__tool-right">
+            <a href="@Url.Action("Create", "User")" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="zmdi zmdi-plus"></i>Add User
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+        <table class="table table-data2">
+            <thead>
+                <tr>
+                    <th>User Name and Surname</th>
+                    <th>User Email</th>
+                    <th>Group</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr class="tr-shadow">
+                        <td>@user.FirstName @user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>@user.AuthGroup.Name</td>
+                        @if (user.Status == true)
+                        {
+
+                            <td class="text-success">Active</td>
+
+                        }
+                        else
+                        {
+
+                            <td class="text-danger">De-Active</td>
+
+                        }
+                        <td>
+                            <div class="table-data-feature">
+                                @if (user.Token == null)
+                                {
+                                    <a href="@Url.Action("Edit", "User", new { Id = user.Id })" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <i class="zmdi zmdi-edit"></i>
+
+                                    </a>
+                                }
+                                <a href="@Url.Action("Delete", "User", new { Id = user.Id })" class="item delete" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+
+        $(document).ready(function () {
+            $('a.delete').confirm({
+                title: "Delete User",
+                content: "Are you sure to delete User?",
+                buttons: {
+                    heyThere: {
+                        text: 'Yes',
+                        btnClass: 'btn-danger',
+                        action: function (heyThereButton) {
+
+                            location.href = this.$target.attr('href')
+
+                        }
+                    },
+                    no: {
+                        text: 'No',
+                        btnClass: 'btn-success',
+                        action: function (no) {
+                        }
+                    },
+                }
+            });
+        });
+
+</script>
+
+
