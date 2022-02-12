@@ -140,10 +140,15 @@
     <Compile Include="Migrations\202202122103226_CreateDatabase.designer.cs">
       <DependentUpon>202202122103226_CreateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202202122246298_New Tables are added.cs" />
+    <Compile Include="Migrations\202202122246298_New Tables are added.designer.cs">
+      <DependentUpon>202202122246298_New Tables are added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthAction.cs" />
     <Compile Include="Models\AuthGroup.cs" />
     <Compile Include="Models\AuthPermission.cs" />
+    <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\JsonResponse.cs" />
@@ -532,6 +537,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202202122103226_CreateDatabase.resx">
       <DependentUpon>202202122103226_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202122246298_New Tables are added.resx">
+      <DependentUpon>202202122246298_New Tables are added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

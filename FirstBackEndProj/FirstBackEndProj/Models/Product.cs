@@ -11,6 +11,8 @@ namespace FirstBackEndProj.Models
     {
         public int Id { get; set; }
         public int CategoryId { get; set; }
+
+        public int BrandId { get; set; }
         [Required]
         [StringLength(250)]
         public string Name { get; set; }
@@ -22,6 +24,7 @@ namespace FirstBackEndProj.Models
         public Boolean Aviability { get; set; }
         public Byte Discount { get; set; }
         public Category Category { get; set; }
+        public Brand Brand { get; set; }
         public List<ProductSize> Sizes { get; set; }
         public List<ProductPhoto> Photos { get; set; }
         public List<OrderItem> OrderItems { get; set; }
