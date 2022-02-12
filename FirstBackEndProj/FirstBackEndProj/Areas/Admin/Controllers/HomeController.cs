@@ -26,7 +26,7 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
                 FirstName = "Zahra",
                 LastName = "Amrahova",
                 Email = "zehra.khudaverdiyeva@gmail.com",
-                AuthGroupId = 45,
+                AuthGroupId = 1,
                 Status = true,
                 PasswordHash = Crypto.HashPassword("123123")
 

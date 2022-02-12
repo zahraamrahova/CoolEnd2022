@@ -52,7 +52,7 @@ $(document).ready(function () {
                     
                 }
                 else {
-                    toastr.warning("Group wasnot created!");
+                    toastr.warning(resp.Message);
                 }
 
             },
@@ -117,7 +117,7 @@ $(document).ready(function () {
                   
                 }
                 else {
-                    toastr.warning("Group wasnot created!");
+                    toastr.warning(resp.Message);
                 }
 
             },
