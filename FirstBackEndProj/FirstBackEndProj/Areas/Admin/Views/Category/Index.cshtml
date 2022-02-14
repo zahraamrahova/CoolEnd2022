@@ -1,0 +1,93 @@
+﻿@model List<FirstBackEndProj.Models.Category>
+@{
+    ViewBag.Title = "Categories";
+}
+
+<div class="col-md-12">
+    <h3 class="title-5 m-b-35">Groups</h3>
+    <div class="table-data__tool">
+        <div class="table-data__tool-right">
+            <a href="@Url.Action("Create", "Category")" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="zmdi zmdi-plus"></i>Add Category
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+
+        @if (Model.Count == 0)
+        {
+            <div class="alert alert-primary" role="alert">
+                No any Category!
+            </div>
+        }
+
+        else
+        {
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Main Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var category in Model)
+                    {
+                    <tr class="tr-shadow">
+                        <td>@category.Name</td>
+                        <td>@category.Parent.Name</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <a href="@Url.Action("Edit", "Category", new {Id=category.Id })" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
+                                @if (category.Products == null || category.Products.Count == 0)
+                                {
+                                    <a href="@Url.Action("Delete", "Category", new {Id=category.Id })" class="item delete-category" data-toggle="tooltip" data-placement="top" data-id=" @category.Id" title="Delete">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                        <tr class="spacer"></tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+    <!-- END DATA TABLE -->
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('a.delete-category').confirm({
+            title: "Delete Category",
+            content: "Are you sure to delete Category?",
+            buttons: {
+                heyThere: {
+                    text: 'Yes',
+                    btnClass: 'btn-danger',
+                    action: function (heyThereButton) {
+                        var brandId = $(this).data("id");
+
+                        location.href = this.$target.attr('href')
+
+                    }
+                },
+                no: {
+                    text: 'No',
+                    btnClass: 'btn-success',
+                    action: function (no) {
+                    }
+                },
+            }
+        });
+    });
+
+</script>
+

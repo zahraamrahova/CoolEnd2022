@@ -82,5 +82,6 @@ D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndPro
 D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.pdb
 D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.Migrations.CreateDatabase.resources
 D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.csproj.GenerateResource.cache
-D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.csproj.AssemblyReference.cache
 D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.Migrations.NewTablesareadded.resources
+D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.Migrations.addReuiredtoBrand.resources
+D:\Zahra Amrahova Programming Lesson\12.02.2022\FirstBackEndProj\FirstBackEndProj\obj\Debug\FirstBackEndProj.Migrations.addCategoryParent.resources

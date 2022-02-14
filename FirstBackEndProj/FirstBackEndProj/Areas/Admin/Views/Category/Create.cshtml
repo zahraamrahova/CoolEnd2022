@@ -1,0 +1,52 @@
+﻿@model FirstBackEndProj.Models.Category
+@{
+    ViewBag.Title = "Add Category";
+}
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            Create Category
+        </div>
+        <div class="card-body card-block">
+            <form action="@Url.Action("Create", "Category")" method="post" class="form-horizontal" id="create-category-form">
+              @Html.AntiForgeryToken()
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        @Html.LabelFor(m=>m.Name, new { @class= "form-control-label" })
+                        @*<label for="Email" class=" form-control-label">User Email</label>*@
+                    </div>
+                    <div class="col-12 col-md-9">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                        @*<input type="email" id="Email" required name="Email" class="form-control">*@
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="selectSm" class=" form-control-label">Select Main Category</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <select name="Name" id="Name" class="form-control-sm form-control">
+                            <option value="0"></option>
+
+                            @foreach (var item in ViewBag.Categories as List<FirstBackEndProj.Models.Category>)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                <br> <br>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary" btn-sm>
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

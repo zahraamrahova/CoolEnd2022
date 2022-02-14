@@ -1,4 +1,4 @@
-﻿@model FirstBackEndProj.Models.User
+﻿
 @{
     Layout = null;
 }
@@ -17,7 +17,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Register</title>
+    <title>Login</title>
 
     <!-- Fontfaces CSS-->
     <link href="~/Areas/Admin/Public/css/font-face.css" rel="stylesheet" media="all">
@@ -55,17 +55,11 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form name="user-group" action="@Url.Action("Confirm", "User")" method="post">
-
-                                <input type="hidden" name="Id" value="@Model.Id" />
+                            <form name="user-group" action="@Url.Action("Login", "Home")" method="post">                              
                                 <div class="form-group">
-                                    <label for="FirstName">FirstName</label>
-                                    <input for="FirstName" id="FirstName" class="au-input au-input--full" type="text" name="FirstName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="LastName">LastNames</label>
-                                    <input id="LastName" class="au-input au-input--full" type="text" name="LastName">
-                                </div>
+                                    <label for="Email">Email</label>
+                                    <input for="Email" id="Email" class="au-input au-input--full" type="email" name="Email">
+                                </div>              
                                 <div class="form-group">
                                     <label for=" PasswordHash">Password</label>
                                     <input for=" PasswordHash" id="PasswordHash" class="au-input au-input--full" type="password" name="PasswordHash">
@@ -73,7 +67,7 @@
 
                                 <div class="social-login-content">
                                     <div class="social-button">
-                                        <button type="submit" class="au-btn au-btn--block au-btn--blue m-b-20">Qeydiyyat</button>
+                                        <button type="submit" class="au-btn au-btn--block au-btn--blue m-b-20">Login</button>
                                     </div>
                                 </div>
                             </form>

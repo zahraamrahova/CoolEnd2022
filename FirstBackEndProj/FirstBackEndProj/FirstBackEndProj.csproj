@@ -128,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -143,6 +145,14 @@
     <Compile Include="Migrations\202202122246298_New Tables are added.cs" />
     <Compile Include="Migrations\202202122246298_New Tables are added.designer.cs">
       <DependentUpon>202202122246298_New Tables are added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202142014208_addReuiredtoBrand.cs" />
+    <Compile Include="Migrations\202202142014208_addReuiredtoBrand.designer.cs">
+      <DependentUpon>202202142014208_addReuiredtoBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202142117096_addCategoryParent.cs" />
+    <Compile Include="Migrations\202202142117096_addCategoryParent.designer.cs">
+      <DependentUpon>202202142117096_addCategoryParent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthAction.cs" />
@@ -491,6 +501,12 @@
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -540,6 +556,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202202122246298_New Tables are added.resx">
       <DependentUpon>202202122246298_New Tables are added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202142014208_addReuiredtoBrand.resx">
+      <DependentUpon>202202142014208_addReuiredtoBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202142117096_addCategoryParent.resx">
+      <DependentUpon>202202142117096_addCategoryParent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
