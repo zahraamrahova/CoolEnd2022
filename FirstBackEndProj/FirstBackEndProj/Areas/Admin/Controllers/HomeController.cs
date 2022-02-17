@@ -23,10 +23,10 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
 
             Models.User admin = new User
             {
-                FirstName = "Zahra",
-                LastName = "Amrahova",
-                Email = "zehra.khudaverdiyeva@gmail.com",
-                AuthGroupId = 1,
+                FirstName = "Inji",
+                LastName = "Amrah",
+                Email = "inji@gmail.com",
+                AuthGroupId = 2,
                 Status = true,
                 PasswordHash = Crypto.HashPassword("123123")
 

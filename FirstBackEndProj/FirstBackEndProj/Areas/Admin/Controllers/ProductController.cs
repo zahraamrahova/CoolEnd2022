@@ -24,18 +24,19 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
             ViewBag.Categories = _db.Categories.Where(c => c.ParentId == null).ToList();
 
             ViewBag.Brands = _db.Brands.ToList();
-          
+
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude = "ProductPhotos")] Product product, HttpPostedFileBase [] ProductPhotos)
+        public ActionResult Create([Bind(Exclude = "ProductPhotos")] Product product, HttpPostedFileBase[] ProductPhotos)
         {
             if (ModelState.IsValid)
             {
                 _db.Products.Add(product);
                 _db.SaveChanges();
-                foreach (var photo in ProductPhotos) {
+                foreach (var photo in ProductPhotos)
+                {
                     string photoName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + photo.FileName;
                     string path = Path.Combine(Server.MapPath("~/Uploads/Products"), photoName);
                     photo.SaveAs(path);
@@ -52,10 +53,10 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
             ViewBag.Categories = _db.Categories.Where(c => c.ParentId == null).ToList();
             ViewBag.Brands = _db.Brands.ToList();
             return View(product);
-            
+
         }
 
-        public ActionResult Delete (int Id)
+        public ActionResult Delete(int Id)
         {
             var prdct = _db.Products.FirstOrDefault(p => p.Id == Id);
             if (prdct == null)
@@ -69,7 +70,7 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public ActionResult Edit (int Id)
+        public ActionResult Edit(int Id)
         {
 
             var model = _db.Products.FirstOrDefault(p => p.Id == Id);
@@ -83,13 +84,39 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
             return View(model);
         }
 
-        [HttpPost] 
-        public ActionResult Edit (Product product)
+        [HttpPost]
+        public ActionResult Edit([Bind(Exclude = "ProductPhotos")] Product product, HttpPostedFileBase[] ProductPhotos)
         {
-
+            if (ProductPhotos != null)
+            {
+                
+                foreach (var photo in ProductPhotos)
+                {
+                    string photoName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + photo.FileName;
+                    string path = Path.Combine(Server.MapPath("~/Uploads/Products"), photoName);
+                    photo.SaveAs(path);
+                    ProductPhoto p = new ProductPhoto
+                    {
+                        Name = photoName,
+                        ProductId = product.Id
+                    };
+                    _db.ProductPhotoes.Add(p);
+                    _db.SaveChanges();
+                }
+                var prdct = _db.Products.FirstOrDefault(p => p.Id == product.Id);
+                prdct.Name = product.Name;
+                prdct.Description = product.Description;
+                prdct.Price = product.Price;
+                prdct.Discount = product.Discount;
+                prdct.BrandId = product.BrandId;
+                prdct.CategoryId = product.CategoryId;
+                prdct.ProductPhotos = product.ProductPhotos;
+                _db.SaveChanges();
+            }
 
             return RedirectToAction("Index");
-        }
 
+
+        }
     }
 }

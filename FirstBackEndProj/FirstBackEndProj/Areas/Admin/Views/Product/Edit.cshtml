@@ -77,7 +77,7 @@
 
                             @foreach (var item in ViewBag.Brands as List<FirstBackEndProj.Models.Brand>)
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option @(Model.BrandId == item.Id ? "selected" : " ") value="@item.Id">@item.Name</option>
 
                             }
 
@@ -95,7 +95,7 @@
 
                             @foreach (var item in ViewBag.Categories as List<FirstBackEndProj.Models.Category>)
                             {
-                                <option value="@item.Id">@item.Name</option>
+                                <option @(Model.CategoryId == item.Id ? "selected" : " ") value="@item.Id">@item.Name</option>
 
                             }
 
@@ -112,3 +112,55 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function () {
+        $(document).on('change', '.CategoryId', function () {
+            console.log($(this).val());
+            var parentId = $(this).val();
+            if (parentId != 0) {
+
+                $.ajax({
+                    url: "@Url.Action("GetChildren", "Category")",
+                    data: {
+                        Id: parentId
+                    },
+                    success: function (res) {
+                        if (res.Success == true) {
+                            console.log(res);
+                            var children = JSON.parse(res.Data);
+                            if (children.length == 0) {
+                                $("input[name=CategoryId]").val(parentId);
+                            }
+                            else {
+                                var selectElem = $("<select></select>");
+                                selectElem.addClass("form-control-sm form-control CategoryId");
+
+                                var optionElem = $("<option></option>");
+                                optionElem.attr("value", 0);
+                                selectElem.append(optionElem);
+                                var selects = $(".categories-select");
+                                for (var i = 0; i < children.length; i++) {
+                                    var optionElem = $("<option></option>");
+                                    optionElem.attr("value", children[i].Id);
+                                    optionElem.text(children[i].Name);
+                                    selectElem.append(optionElem);
+                                    var div = $("<div></div>").addClass("col-12 col-md-9");
+                                    div.append(selectElem);
+                                    selects.append(div);
+                                }
+                            }
+                        }
+                        console.log(res);
+                    },
+                    error: function () {
+
+                    },
+
+                });
+            }
+        });
+    });
+
+</script>
