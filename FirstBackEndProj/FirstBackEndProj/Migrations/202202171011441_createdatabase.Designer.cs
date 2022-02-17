@@ -7,13 +7,13 @@ namespace FirstBackEndProj.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class addReuiredtoBrand : IMigrationMetadata
+    public sealed partial class createdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addReuiredtoBrand));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202202142014208_addReuiredtoBrand"; }
+            get { return "202202171011441_createdatabase"; }
         }
         
         string IMigrationMetadata.Source

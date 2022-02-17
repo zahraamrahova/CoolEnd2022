@@ -24,7 +24,7 @@ namespace FirstBackEndProj.DAL
         public DbSet<OrderItem> OrderItems { get; set; }
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductPhoto> ProductPhotos { get; set; }
+        public DbSet<ProductPhoto> ProductPhotoes { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
 
 

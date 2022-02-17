@@ -1,14 +1,14 @@
-﻿@model List<FirstBackEndProj.Models.Category>
+﻿@model List<FirstBackEndProj.Models.Product>
 @{
-    ViewBag.Title = "Categories";
+    ViewBag.Title = "Products";
 }
 
 <div class="col-md-12">
-    <h3 class="title-5 m-b-35">Groups</h3>
+    <h3 class="title-5 m-b-35">Product</h3>
     <div class="table-data__tool">
         <div class="table-data__tool-right">
-            <a href="@Url.Action("Create", "Category")" class="au-btn au-btn-icon au-btn--green au-btn--small">
-                <i class="zmdi zmdi-plus"></i>Add Category
+            <a href="@Url.Action("Create", "Product")" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="zmdi zmdi-plus"></i>Add Product
             </a>
         </div>
     </div>
@@ -17,7 +17,7 @@
         @if (Model.Count == 0)
         {
             <div class="alert alert-primary" role="alert">
-                No any Category!
+                No any Product!
             </div>
         }
 
@@ -26,33 +26,36 @@
             <table class="table table-data2">
                 <thead>
                     <tr>
+                        <th>Photo</th>
                         <th>Name</th>
-                        <th>Main Category</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Brand</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach (var category in Model)
+                    @foreach (var product in Model)
                     {
                     <tr class="tr-shadow">
-                        <td>@category.Name</td>
-                        <td>@(category.ParentId!=null ? category.Parent.Name: "")</td>
+                        <td><img src="~/Uploads/Products/@product.ProductPhotos[0].Name" alt="@product.Name" /></td>
+                        <td>@product.Name</td>
+                        <td>@product.Category.Name</td>
+                        <td>@product.Price.ToString("#.00") EUR</td>
+                        <td>@product.Brand.Name</td>
                         <td>
                             <div class="table-data-feature">
-                                <a href="@Url.Action("Edit", "Category", new {Id=category.Id })" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <a href="@Url.Action("Edit", "Product", new {Id=product.Id })" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
                                 </a>
-                                @if((!Model.Any(c => c.ParentId == category.Id)) & (category.Products == null || category.Products.Count == 0))
-                                {
-                                    <a href="@Url.Action("Delete", "Category", new {Id=category.Id })" class="item delete-category" data-toggle="tooltip" data-placement="top" data-id=" @category.Id" title="Delete">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </a>
-                                }
+                                <a href="@Url.Action("Delete", "Product", new {Id=product.Id })" class="item delete-product" data-toggle="tooltip" data-placement="top" data-id=" @product.Id" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </a>
+
                             </div>
                         </td>
                     </tr>
                         <tr class="spacer"></tr>
-
                     }
                 </tbody>
             </table>
@@ -65,9 +68,9 @@
 <script>
 
     $(document).ready(function () {
-        $('a.delete-category').confirm({
-            title: "Delete Category",
-            content: "Are you sure to delete Category?",
+        $('a.delete-product').confirm({
+            title: "Delete Product",
+            content: "Are you sure to delete Product?",
             buttons: {
                 heyThere: {
                     text: 'Yes',

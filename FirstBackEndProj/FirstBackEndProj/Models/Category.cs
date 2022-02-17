@@ -9,9 +9,9 @@ namespace FirstBackEndProj.Models
     public class Category
     {
         public int Id { get; set; }
-        [Display(Name="Main Category")]
+        [Display(Name="Category Name")]
         public string Name { get; set; }
-        public int ParentId { get; set; }
+        public int ?ParentId { get; set; }
 
         public Category Parent { get; set; }
 

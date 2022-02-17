@@ -26,7 +26,7 @@ namespace FirstBackEndProj.Models
         public Category Category { get; set; }
         public Brand Brand { get; set; }
         public List<ProductSize> Sizes { get; set; }
-        public List<ProductPhoto> Photos { get; set; }
+        public List<ProductPhoto> ProductPhotos { get; set; }
         public List<OrderItem> OrderItems { get; set; }
     }
 }

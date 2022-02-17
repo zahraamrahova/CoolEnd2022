@@ -132,27 +132,17 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Filters\RoleFilter.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CoolContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202202122103226_CreateDatabase.cs" />
-    <Compile Include="Migrations\202202122103226_CreateDatabase.designer.cs">
-      <DependentUpon>202202122103226_CreateDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202122246298_New Tables are added.cs" />
-    <Compile Include="Migrations\202202122246298_New Tables are added.designer.cs">
-      <DependentUpon>202202122246298_New Tables are added.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202142014208_addReuiredtoBrand.cs" />
-    <Compile Include="Migrations\202202142014208_addReuiredtoBrand.designer.cs">
-      <DependentUpon>202202142014208_addReuiredtoBrand.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202142117096_addCategoryParent.cs" />
-    <Compile Include="Migrations\202202142117096_addCategoryParent.designer.cs">
-      <DependentUpon>202202142117096_addCategoryParent.cs</DependentUpon>
+    <Compile Include="Migrations\202202171011441_createdatabase.cs" />
+    <Compile Include="Migrations\202202171011441_createdatabase.designer.cs">
+      <DependentUpon>202202171011441_createdatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthAction.cs" />
@@ -507,6 +497,10 @@
     <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -536,6 +530,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Uploads\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -551,17 +546,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202122103226_CreateDatabase.resx">
-      <DependentUpon>202202122103226_CreateDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202122246298_New Tables are added.resx">
-      <DependentUpon>202202122246298_New Tables are added.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202142014208_addReuiredtoBrand.resx">
-      <DependentUpon>202202142014208_addReuiredtoBrand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202142117096_addCategoryParent.resx">
-      <DependentUpon>202202142117096_addCategoryParent.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202171011441_createdatabase.resx">
+      <DependentUpon>202202171011441_createdatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

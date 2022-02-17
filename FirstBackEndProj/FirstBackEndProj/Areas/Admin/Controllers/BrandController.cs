@@ -66,6 +66,7 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
             return View(brand);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit (Brand brand)
         {
             var brnd = _db.Brands.FirstOrDefault(b => b.Id == brand.Id);

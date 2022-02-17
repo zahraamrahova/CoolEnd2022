@@ -3,16 +3,70 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class NewTablesareadded : DbMigration
+    public partial class createdatabase : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.AuthActions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 250),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.AuthGroups",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 250),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.AuthPermissions",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AuthGroupId = c.Int(nullable: false),
+                        AuthActionId = c.Int(nullable: false),
+                        CanCreate = c.Boolean(nullable: false),
+                        CanDelete = c.Boolean(nullable: false),
+                        CanEdit = c.Boolean(nullable: false),
+                        CanView = c.Boolean(nullable: false),
+                        OnlyOwner = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AuthActions", t => t.AuthActionId, cascadeDelete: true)
+                .ForeignKey("dbo.AuthGroups", t => t.AuthGroupId, cascadeDelete: true)
+                .Index(t => t.AuthGroupId)
+                .Index(t => t.AuthActionId);
+            
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AuthGroupId = c.Int(nullable: false),
+                        FirstName = c.String(maxLength: 100),
+                        LastName = c.String(maxLength: 100),
+                        Email = c.String(nullable: false, maxLength: 100),
+                        PasswordHash = c.String(maxLength: 200),
+                        Token = c.String(maxLength: 200),
+                        Status = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AuthGroups", t => t.AuthGroupId, cascadeDelete: true)
+                .Index(t => t.AuthGroupId);
+            
             CreateTable(
                 "dbo.Brands",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -41,9 +95,11 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        ParentId = c.Int(nullable: false),
+                        ParentId = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Categories", t => t.ParentId)
+                .Index(t => t.ParentId);
             
             CreateTable(
                 "dbo.OrderItems",
@@ -132,15 +188,23 @@
             DropForeignKey("dbo.OrderItems", "OrderId", "dbo.Orders");
             DropForeignKey("dbo.Orders", "ClientId", "dbo.Clients");
             DropForeignKey("dbo.Products", "CategoryId", "dbo.Categories");
+            DropForeignKey("dbo.Categories", "ParentId", "dbo.Categories");
             DropForeignKey("dbo.Products", "BrandId", "dbo.Brands");
+            DropForeignKey("dbo.Users", "AuthGroupId", "dbo.AuthGroups");
+            DropForeignKey("dbo.AuthPermissions", "AuthGroupId", "dbo.AuthGroups");
+            DropForeignKey("dbo.AuthPermissions", "AuthActionId", "dbo.AuthActions");
             DropIndex("dbo.ProductSizeProducts", new[] { "Product_Id" });
             DropIndex("dbo.ProductSizeProducts", new[] { "ProductSize_Id" });
             DropIndex("dbo.ProductPhotoes", new[] { "ProductId" });
             DropIndex("dbo.Orders", new[] { "ClientId" });
             DropIndex("dbo.OrderItems", new[] { "ProductId" });
             DropIndex("dbo.OrderItems", new[] { "OrderId" });
+            DropIndex("dbo.Categories", new[] { "ParentId" });
             DropIndex("dbo.Products", new[] { "BrandId" });
             DropIndex("dbo.Products", new[] { "CategoryId" });
+            DropIndex("dbo.Users", new[] { "AuthGroupId" });
+            DropIndex("dbo.AuthPermissions", new[] { "AuthActionId" });
+            DropIndex("dbo.AuthPermissions", new[] { "AuthGroupId" });
             DropTable("dbo.ProductSizeProducts");
             DropTable("dbo.ProductSizes");
             DropTable("dbo.ProductPhotoes");
@@ -150,6 +214,10 @@
             DropTable("dbo.Categories");
             DropTable("dbo.Products");
             DropTable("dbo.Brands");
+            DropTable("dbo.Users");
+            DropTable("dbo.AuthPermissions");
+            DropTable("dbo.AuthGroups");
+            DropTable("dbo.AuthActions");
         }
     }
 }

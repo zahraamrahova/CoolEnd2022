@@ -177,6 +177,7 @@ namespace FirstBackEndProj.Areas.Admin.Controllers
             usr.Status = user.Status;
             usr.AuthGroupId = user.AuthGroupId;
 
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
     }
